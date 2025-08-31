@@ -1,0 +1,86 @@
+AgriSwarmRL – Hour-by-Hour Execution Plan (Satellite NDVI + PPO, Webots + Sentinel)
+
+PROJECT CORE: NDVI-based semantic segmentation for aerial land classification using **Sentinel Playground satellite images** + PPO RL-based drone navigation with swarm coordination in Webots.
+
+------------------------------------------------------------
+
+⏱️ PHASE 0 – SETUP (6 hrs)
+Hour    Task
+0–1     Install Webots + test default drone world with Python controller
+1–2     Install Python dependencies (OpenCV, matplotlib, numpy, tqdm, stable-baselines3, etc.)
+2–3     Set up folder structure (/data, /ndvi_seg, /webots_sim, /rl_agent, etc.)
+3–4     Run NDVI/VARI calculation on dummy RGB(-NIR) image (mock or Sentinel satellite image)
+4–5     Export Webots drone camera images to /data (using Python controller API)
+5–6     Initialize GitHub repo locally (don't push yet)
+
+------------------------------------------------------------
+
+🌿 PHASE 1 – NDVI SEGMENTATION & LABELING (10 hrs)
+Hour    Task
+6–7     Download sample satellite images from Sentinel Playground (https://apps.sentinel-hub.com/sentinel-playground/) and save to /data/
+7–8     Preprocess dataset: resize, convert to numpy arrays
+8–9     Implement NDVI (or VARI if only RGB) calculation logic in Python
+9–10    Visualize NDVI/VARI heatmaps (matplotlib + colormap)
+10–11   Threshold NDVI/VARI to generate segmentation masks (vegetation vs barren)
+11–12   Optional: Prepare labels for lightweight U-Net/DeepLab if desired
+12–13   Train/test U-Net or DeepLabV3+ on NDVI-based masks (optional)
+13–14   Save segmentations for input to PPO agent
+14–15   Visual overlay of NDVI on images (for future MP4)
+15–16   Dataset loading + segmentation module finalized
+
+**Note:** NDVI/VARI segmentation pipeline is designed for public RGB satellite images (Sentinel Playground). No proprietary or restricted datasets required.
+
+------------------------------------------------------------
+
+🕹️ PHASE 2 – RULE-BASED DRONE CONTROL (7 hrs)
+Hour    Task
+16–17   Implement basic drone movement in Webots (waypoint style, Python controller)
+17–18   Add basic obstacle detection using Webots APIs (proximity/lidar/camera)
+18–19   Implement patch coverage logging (visited/unvisited regions)
+19–20   Integrate drone camera image → NDVI/VARI heatmap in loop
+20–21   Add logic: move towards higher NDVI/VARI zones (manual rules)
+21–22   Visualize path planning on NDVI/VARI heatmap
+22–23   Log path history for evaluation
+
+------------------------------------------------------------
+
+🧠 PHASE 3 – PPO AGENT TRAINING (15 hrs)
+Hour    Task
+23–24   Define PPO-compatible custom Gym environment (NDVI + drone state, Webots API)
+24–25   Create state vector (position, velocity, NDVI/VARI value, etc.)
+25–26   Define reward function based on vegetation coverage + avoidance
+26–27   Integrate Webots simulation with PPO loop (Stable-Baselines3)
+27–30   Train PPO agent on small map (single drone)
+30–32   Tune hyperparameters: learning rate, gamma, GAE lambda, etc.
+32–34   Visualize reward curve and performance metrics
+34–35   Record MP4 of trained agent navigating on NDVI/VARI
+35–38   Test on large map, compare coverage with rule-based logic
+
+------------------------------------------------------------
+
+🤖 PHASE 4 – MULTI-AGENT SWARM (10 hrs)
+Hour    Task
+38–39   Add second and third drone in Webots (unique robot names)
+39–40   Duplicate PPO agent or create shared multi-agent environment
+40–42   Add inter-drone collision avoidance using distance thresholds
+42–43   Visualize multiple drones + NDVI overlay (live display)
+43–44   Implement swarm logic: spread coverage
+44–45   Track overall % vegetation coverage over time
+45–47   Retrain PPO agent in multi-drone setup (if needed)
+47–48   Test stability and coordination in large field map
+
+------------------------------------------------------------
+
+🎥 PHASE 5 – MP4 DEMO + GITHUB POLISH (6–8 hrs)
+Hour    Task
+48–49   Record final MP4 demo: drone swarm on NDVI/VARI map
+49–50   Add overlays: NDVI heatmap, drone trails, rewards
+50–51   Write README with diagrams and architecture
+51–52   Push final code to GitHub (private/public as needed)
+52–53   Create results folder with images, MP4s, and logs
+53–54   Create project summary PDF or MD for recruiters/hiring managers
+54–56   Buffer time for bugfixes, last-minute tweaks
+
+------------------------------------------------------------
+
+💥 TOTAL TIME: ~60 HOURS

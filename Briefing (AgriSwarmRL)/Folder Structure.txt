@@ -1,0 +1,14 @@
+AgriSwarmRL/
+│
+├── data/                                         # Input images (RGB satellite images from Sentinel Playground, e.g. test_satellite.jpg)
+├── ndvi_seg/
+│     ├── ndvi_demo.ipynb                        # NDVI/VARI explainer, single-image
+│     └── ndvi_segmentation_satellite.ipynb      # Batch NDVI/VARI segmentation pipeline (Sentinel Playground/public RGB images)
+├── webots_sim/
+├── rl_agent/
+│     └── ppo_agent.ipynb
+├── results/
+├── utils/
+├── README.md
+├── requirements.txt
+└── .gitignore

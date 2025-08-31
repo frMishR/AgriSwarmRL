@@ -1,0 +1,114 @@
+Project Title: AgriSwarmRL – Drone Vision & Reinforcement Learning for Precision Farming (Webots + Sentinel Playground)
+
+---
+
+MAIN CONCEPTS TO COVER:
+
+* Semantic segmentation of aerial imagery using NDVI/VARI, with **Sentinel Playground satellite images** as the dataset backbone
+* NDVI or VARI (if RGB-only) visualized as heatmaps to guide drone coverage
+* Optional refinement with lightweight deep models (U-Net / DeepLabV3+)
+* Reinforcement Learning (PPO) for drone navigation & prioritized area coverage (Stable-Baselines3)
+* Multi-agent coordination for swarm logic (multi-drone in Webots)
+* Obstacle and inter-drone collision avoidance (Webots supervisor/collision APIs)
+* MP4 demo generation & GitHub presentation
+
+---
+
+NDVI FORMULA & RULES:
+Definition: NDVI (Normalized Difference Vegetation Index) measures vegetation greenness/health by comparing red and near-infrared reflectance.
+
+Formula:
+NDVI = (NIR – Red) / (NIR + Red + 1e-6)
+
+Where:
+* NIR = reflectance in the near-infrared band (~0.7–1.1 µm)
+* Red = reflectance in the visible red band (~0.6–0.7 µm)
+
+Range Interpretation:
+* –1.0 to –0.1 → Water, snow, clouds, highly reflective non-vegetation
+* –0.1 to 0.1 → Bare soil, rock, urban areas, barren land
+* 0.1 to 0.2 → Desert / very sparse vegetation
+* 0.2 to 0.3 → Shrubland, grassland, stressed crops
+* 0.3 to 0.5 → Average crops, moderate vegetation health
+* 0.5 to 0.7 → Healthy crops, temperate forests
+* 0.7 to 0.9 → Very dense, lush vegetation (tropical forests, peak crop growth)
+* 0.9 to 1.0 → Theoretical maximum, rarely occurs in real-world data
+
+---
+
+DATASET OPTIONS:
+
+* **Sentinel Playground Satellite Images (Recommended):** Public RGB satellite images exported from https://apps.sentinel-hub.com/sentinel-playground/ are the primary dataset for all NDVI/VARI, segmentation, and RL evaluation in this project.
+* Webots-generated images (for integration/mocks as needed)
+* (Alternatives: any NIR-band satellite dataset if needed for extra tests)
+
+---
+
+DEPENDENCIES:
+
+* Python 3.10+
+* OpenCV
+* numpy
+* matplotlib
+* stable-baselines3
+* moviepy
+* Webots Python controller (mandatory)
+* JupyterLab (optional)
+* tqdm (progress tracking)
+* tensorflow/torch (for U-Net or DeepLab semantic segmentation, optional)
+
+---
+
+TOOLS & SOFTWARES NEEDED:
+
+* Webots (robot simulator)
+* VSCode / JupyterLab
+* GitHub
+* moviepy (for MP4 demo)
+* OBS Studio (optional for real-time screen recording)
+* Google Colab (optional for training segmentation models)
+
+---
+
+REFERENCE GITHUB REPOS:
+
+* https://github.com/cyberbotics/webots (Webots simulator)
+* https://github.com/DLR-RM/stable-baselines3 (PPO/MARL)
+* https://github.com/qubvel/segmentation_models.pytorch (U-Net, DeepLab implementations)
+* https://apps.sentinel-hub.com/sentinel-playground/ (Sentinel satellite imagery)
+
+---
+
+NOTE:
+All code, planning, and demos are Webots-based, using **Sentinel Playground satellite imagery as the exclusive dataset** for segmentation, NDVI, and RL reward calculation.
+First, build locally and test; when stable, push to GitHub.
+
+---
+
+GOAL:
+Simulate a drone swarm in Webots that uses NDVI/VARI-based semantic segmentation (Sentinel Playground) to classify and prioritize land regions, and reinforcement learning (PPO) to navigate while avoiding collisions and maximizing coverage.
+Final deliverable: working Webots simulation, GitHub repo, and MP4 demo.
+
+---
+
+HOUR-BY-HOUR BREAKDOWN (BLITZ MODE, TOTAL ~60 HOURS):
+
+Phase 0 – Setup (6 hrs)
+* Webots install, repo setup, sample drone camera test
+
+Phase 1 – Vision (10 hrs)
+* Dataset prep, NDVI/VARI computation, segmentation overlays, NDVI-based labeling
+
+Phase 2 – Rule-based Movement (7 hrs)
+* Basic drone movement (Webots), collision logic, patch coverage logging
+
+Phase 3 – RL Agent PPO (15 hrs)
+* Define custom env (Webots), integrate NDVI/VARI-based rewards, train PPO, analyze results, plot metrics
+
+Phase 4 – Multi-agent Swarm (10 hrs)
+* Add multiple drones (Webots), basic coordination, inter-agent avoidance
+
+Phase 5 – MP4 Demo + GitHub Polish (6–8 hrs)
+* Capture video, add overlays, write README, push repo
+
+TOTAL: ~54 to 60 hrs
