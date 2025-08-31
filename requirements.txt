@@ -1,0 +1,36 @@
+# requirements.txt for AgriSwarmRL
+# -------------------------------
+# UNDER CONSTRUCTION
+#
+# This project is in active development.
+# Dependencies may change as new modules are added and tested.
+# For help, contact: Ayushman Mishra (frMishR on GitHub)
+
+# Core vision & RL libraries:
+numpy
+matplotlib
+opencv-python
+
+# Webots Python API
+# (install via Webots package manager, not pip)
+# webots==R2023b
+
+# RL agent (Stable-Baselines3, Gymnasium, Torch)
+stable-baselines3
+gymnasium
+torch
+
+# Progress bars & utilities
+tqdm
+
+# For MP4 video demo creation
+moviepy
+
+# For Jupyter Notebooks (optional, for development)
+jupyterlab
+
+# (Optional: Semantic segmentation, if used)
+# segmentation-models-pytorch
+# tensorflow
+
+# End of file. Update as project evolves!
