@@ -1,0 +1,33 @@
+#VRML_SIM R2023b utf8
+
+WorldInfo {
+  basicTimeStep 16
+  title "AgriSwarmRL – DJI Mavic 2"
+}
+
+Viewpoint {
+  orientation 0 1 0 0
+  position 0 10 20
+}
+
+TexturedBackground {}
+TexturedBackgroundLight {}
+
+EXTERNPROTO "%{WEBOTS_HOME}/projects/robots/dji/mavic_2_pro/protos/DJIMavic2Pro.proto"
+EXTERNPROTO "%{WEBOTS_HOME}/projects/objects/floors/protos/Floor.proto"
+
+Floor {
+  size 100 100
+  appearance PBRAppearance {
+    baseColor 0.28 0.45 0.28
+    roughness 0.7
+    metalness 0
+  }
+}
+
+DJIMavic2Pro {
+  translation 0 0.1 0
+  rotation 0 1 0 0
+  name "DJIMavic2Pro"
+  controller "ashu_drone_controller"
+}
