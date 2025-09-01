@@ -31,7 +31,7 @@ AgriSwarmRL/
 ├── requirements.txt
 └── .gitignore
 
-## 📅 Project Roadmap
+## Project Roadmap
 1. Phase 1 – Vision (DONE): NDVI/VARI segmentation module finalized.
 2. Phase 2 – Rule-Based Drone Control (NEXT): Waypoint navigation, NDVI-driven rules in Webots.
 3. Phase 3 – RL Agent (PPO): Custom Gym env, RL reward shaping from masks, PPO training.
